@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">MusicPlayer</string>
+    <string name="hint_password">Password*</string>
+    <string name="registration">Registration</string>
+    <string name="back">Back</string>
+    <string name="hint_username">UserName*</string>
+    <string name="hint_email">Email*</string>
+    <string name="hint_passwordagain">Password again*</string>
+    <string name="login">Login</string>
+    <string name="noaccount">Create new account</string>
+    <string name="requiredfields">Fill the required fields</string>
+    <string name="registrationsuccess">Registracion sucess</string>
+    <string name="registrationfail">Registracion unsuccessfull</string>
+    <string name="emailexists">The given email is already registered</string>
+    <string name="unmatchingpasswords">The given passwords do not match</string>
+    <string name="loginunsuccessfull">Wrong email or password</string>
+    <string name="permissionError">This app needs to access your media and audio files to function properly</string>
+    <string name="library">Library</string>
+    <string name="playing">Playing</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="no_song_selected">No song selected</string>
+</resources>

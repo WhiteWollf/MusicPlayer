@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MusicPlayer</string>
+    <string name="hint_password">Jelszó*</string>
+    <string name="registration">Regisztráció</string>
+    <string name="back">Vissza</string>
+    <string name="hint_username">Felhasználónév*</string>
+    <string name="hint_email">Email*</string>
+    <string name="hint_passwordagain">Jelszó újra*</string>
+    <string name="login">Bejelentkezés</string>
+    <string name="noaccount">Új fiók létrehozása</string>
+    <string name="requiredfields">Töltse ki a kötelező mezőket</string>
+    <string name="registrationsuccess">Sikeres regisztráció</string>
+    <string name="registrationfail">A megadott email cím már regisztrálva van</string>
+    <string name="emailexists">A megadott email cím már regisztrálva van</string>
+    <string name="unmatchingpasswords">A megadott jelszavak nem egyeznek</string>
+    <string name="loginunsuccessfull">Rossz email vagy jelszó</string>
+    <string name="permissionError">"Ennek az alkalmazásnak hozzá kell férnie a média- és hangfájlokhoz a megfelelő működéshez. "</string>
+    <string name="library">Könyvtár</string>
+    <string name="playing">Lejátszó</string>
+    <string name="previous">Előző</string>
+    <string name="no_song_selected">Nincs kiválaszott zene</string>
+    <string name="next">Következő</string>
+</resources>
