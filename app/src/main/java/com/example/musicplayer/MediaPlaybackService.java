@@ -424,11 +424,19 @@ public class MediaPlaybackService extends MediaBrowserServiceCompat {
     }
 
     public int getSongDuration() {
-        return mediaPlayer.getDuration();
+        if (mediaPlayer != null) {
+            return mediaPlayer.getDuration();
+        } else {
+            return 0;
+        }
     }
 
     public int getCurrentPosition() {
-        return mediaPlayer.getCurrentPosition();
+        if (mediaPlayer != null) {
+            return mediaPlayer.getCurrentPosition();
+        } else {
+            return 0;
+        }
     }
 
     private void updateNotificationSeekBar() {

@@ -29,10 +29,10 @@
         android:layout_height="320dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.494"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.05"
+        app:layout_constraintVertical_bias="0.172"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
@@ -54,8 +54,8 @@
 
     <ImageButton
         android:id="@+id/play_button"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/media_play"
         app:layout_constraintEnd_toStartOf="@+id/skip_forward"
@@ -65,8 +65,8 @@
 
     <ImageButton
         android:id="@+id/skip_forward"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/media_skip"
         app:layout_constraintEnd_toStartOf="@+id/track_repeat"
@@ -76,8 +76,8 @@
 
     <ImageButton
         android:id="@+id/track_repeat"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/media_repeat"
         app:layout_constraintEnd_toEndOf="parent"
@@ -87,8 +87,8 @@
 
     <ImageButton
         android:id="@+id/skip_backward"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/media_skip"
         android:scaleX="-1"
@@ -100,8 +100,8 @@
 
     <ImageButton
         android:id="@+id/shuffle"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginTop="30dp"
         android:background="@drawable/media_shuffle"
         app:layout_constraintEnd_toStartOf="@+id/skip_backward"
@@ -110,14 +110,53 @@
         app:layout_constraintTop_toBottomOf="@+id/song_seek_bar" />
 
     <SeekBar
-        android:layout_width="0px"
         android:id="@+id/song_seek_bar"
+        style="@android:style/Widget.Material.SeekBar.Discrete"
+        android:layout_width="0px"
         android:layout_height="66dp"
-        app:layout_constraintWidth_max="320dp"
         android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/song_album"/>
+        app:layout_constraintTop_toBottomOf="@+id/song_album"
+        app:layout_constraintWidth_max="320dp" />
+
+    <Button
+        android:id="@+id/logout"
+        style="@android:style/Widget.Holo.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/logout"
+        android:fontFamily="monospace"
+        android:textSize="15sp"
+        android:textColor="#881111"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="User@example.com"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:fontFamily="monospace"
+        android:textSize="15sp"
+        android:textColor="#0f94b7"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="UserName"
+        android:fontFamily="monospace"
+        android:textSize="15sp"
+        android:textColor="#0f94b7"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/email" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

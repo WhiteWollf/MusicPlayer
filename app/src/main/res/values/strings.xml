@@ -22,4 +22,5 @@
     <string name="previous">Previous</string>
 
     <string name="no_song_selected">No song selected</string>
+    <string name="logout">Logout</string>
 </resources>

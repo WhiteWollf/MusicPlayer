@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -21,6 +22,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -31,15 +33,10 @@ import androidx.fragment.app.Fragment;
 public class PlayingFragment extends Fragment {
 
     private MediaPlaybackService mediaPlaybackService;
-
-    private TextView songTitle;
-    private TextView songArtist;
-    private ImageButton playButton;
-    private ImageButton skipForward;
-    private ImageButton skipBackward;
-    private ImageButton repeatButton;
-    private ImageButton shuffleButton;
+    private TextView songTitle, songArtist, userName, email;
+    private ImageButton playButton, skipForward, skipBackward, repeatButton, shuffleButton;
     private ImageView albumCover;
+    private Button logout;
 
     private boolean isBound = false;
 
@@ -200,6 +197,52 @@ public class PlayingFragment extends Fragment {
         repeatButton = view.findViewById(R.id.track_repeat);
         shuffleButton = view.findViewById(R.id.shuffle);
         seekBar = view.findViewById(R.id.song_seek_bar);
+        email = view.findViewById(R.id.email);
+        userName = view.findViewById(R.id.username);
+        logout = view.findViewById(R.id.logout);
+
+        SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
+        String emailText = sharedPreferences.getString("email", null);
+        String userNameText = sharedPreferences.getString("userName", null);
+        email.setText(emailText);
+        userName.setText(userNameText);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mediaPlaybackService != null && isBound) {
+                    Intent intent = new Intent(getActivity(), MediaPlaybackService.class);
+                    intent.setAction("ACTION_PAUSE");
+                    getActivity().startService(intent);
+
+                    mediaPlaybackService.setOnSongChangedListener(null);
+                    requireActivity().unbindService(serviceConnection);
+                    isBound = false;
+                }
+
+                Intent stopIntent = new Intent(getActivity(), MediaPlaybackService.class);
+                requireActivity().stopService(stopIntent);
+
+                SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.clear();
+                editor.apply();
+
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+
+                // 5. Finish current activity
+                requireActivity().finish();
+            }
+        });
+
+        if (email != null && userName != null) {
+            Log.d("SharedPrefs", "Email: " + email);
+            Log.d("SharedPrefs", "Username: " + userName);
+        } else {
+            Log.d("SharedPrefs", "No user data found");
+        }
 
         ColorStateList inactiveStateList = ColorStateList.valueOf(Color.GRAY);
         repeatButton.setBackgroundTintList(inactiveStateList);
@@ -229,18 +272,22 @@ public class PlayingFragment extends Fragment {
         skipForward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MediaPlaybackService.class);
-                intent.setAction("ACTION_SKIP_TO_NEXT");
-                getActivity().startService(intent);
+                if(mediaPlaybackService.getCurrentSong()!=null) {
+                    Intent intent = new Intent(getActivity(), MediaPlaybackService.class);
+                    intent.setAction("ACTION_SKIP_TO_NEXT");
+                    getActivity().startService(intent);
+                }
             }
         });
 
         skipBackward.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), MediaPlaybackService.class);
-                intent.setAction("ACTION_SKIP_TO_PREVIOUS");
-                getActivity().startService(intent);
+                if(mediaPlaybackService.getCurrentSong()!=null){
+                    Intent intent = new Intent(getActivity(), MediaPlaybackService.class);
+                    intent.setAction("ACTION_SKIP_TO_PREVIOUS");
+                    getActivity().startService(intent);
+                }
             }
         });
 
@@ -264,9 +311,8 @@ public class PlayingFragment extends Fragment {
         shuffleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (isBound) {
+                if (isBound && mediaPlaybackService.getCurrentSong()!=null) {
                     isShuffle = !isShuffle;
-                    mediaPlaybackService.setShuffle(isShuffle);
                     if (isShuffle) {
                         ColorStateList colorStateList = ColorStateList.valueOf(Color.parseColor("#34C95C"));
                         shuffleButton.setBackgroundTintList(colorStateList);
