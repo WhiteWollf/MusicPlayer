@@ -33,7 +33,7 @@ import androidx.fragment.app.Fragment;
 public class PlayingFragment extends Fragment {
 
     private MediaPlaybackService mediaPlaybackService;
-    private TextView songTitle, songArtist, userName, email;
+    private TextView songTitle, songArtist, userName, email, duration;
     private ImageButton playButton, skipForward, skipBackward, repeatButton, shuffleButton;
     private ImageView albumCover;
     private Button logout;
@@ -56,6 +56,8 @@ public class PlayingFragment extends Fragment {
             }
         }
     };
+
+
 
     private void updatePlayButton(boolean isPlaying) {
         if (isPlaying) {
@@ -199,6 +201,7 @@ public class PlayingFragment extends Fragment {
         email = view.findViewById(R.id.email);
         userName = view.findViewById(R.id.username);
         logout = view.findViewById(R.id.logout);
+        duration = view.findViewById(R.id.duration);
 
         SharedPreferences sharedPreferences = requireActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE);
         String emailText = sharedPreferences.getString("email", null);
@@ -232,6 +235,15 @@ public class PlayingFragment extends Fragment {
                 startActivity(intent);
 
                 requireActivity().finish();
+            }
+        });
+
+        view.setOnTouchListener(new OnSwipeTouchListener(getContext()) {
+            public void onSwipeRight() {
+                skipBackward.callOnClick();
+            }
+            public void onSwipeLeft() {
+                skipForward.callOnClick();
             }
         });
 
@@ -338,9 +350,15 @@ public class PlayingFragment extends Fragment {
             isBound = false;
         }
     }
-
+    private String formatTime(int millis) {
+        int minutes = (millis / 1000) / 60;
+        int seconds = (millis / 1000) % 60;
+        return String.format("%d:%02d", minutes, seconds);
+    }
     private void updateSeekBar() {
         if (mediaPlaybackService != null) {
+            String formattedTime = formatTime(mediaPlaybackService.getCurrentPosition()) + "/" + formatTime(mediaPlaybackService.getSongDuration());
+            duration.setText(formattedTime);
             int progress = (int) (((float) mediaPlaybackService.getCurrentPosition() / mediaPlaybackService.getSongDuration()) * 100);
             seekBar.setProgress(progress);
             if (!mediaPlaybackService.isPlaying()) {

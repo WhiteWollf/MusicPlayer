@@ -10,6 +10,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.MediaMetadata;
 import android.os.Build;
+import android.service.autofill.OnClickAction;
 import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
@@ -38,6 +39,19 @@ public class MediaNotificationManager {
         notificationManager.createNotificationChannel(channel);
     }
 
+    private PendingIntent getContentIntent() {
+        Intent intent = new Intent(context, MusicPlayer.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+        intent.putExtra("open_fragment", "playing");
+
+        return PendingIntent.getActivity(
+                context,
+                0,
+                intent,
+                PendingIntent.FLAG_IMMUTABLE | PendingIntent.FLAG_UPDATE_CURRENT
+        );
+    }
+
     public Notification showNotification(String title, String artist, Bitmap albumArt, boolean isPlaying, int totalDuration, int currentDuration) {
             NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.mp_notification_logo)
@@ -49,6 +63,7 @@ public class MediaNotificationManager {
                 .setOnlyAlertOnce(true)
                 .setCategory(NotificationCompat.CATEGORY_TRANSPORT)
                 .setPriority(NotificationCompat.PRIORITY_LOW)
+                .setContentIntent(getContentIntent())
                 .addAction(new NotificationCompat.Action(R.drawable.media_previous_small, "Previous", getActionIntent("ACTION_SKIP_TO_PREVIOUS")));
 
         if (isPlaying) {

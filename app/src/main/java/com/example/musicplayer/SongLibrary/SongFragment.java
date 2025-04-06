@@ -60,7 +60,8 @@ public class SongFragment extends Fragment {
                         new NavOptions.Builder()
                                 .setPopUpTo(R.id.navigation_library, true)
                                 .build()
-                );            }
+                );
+            }
         });
         recyclerView.setAdapter(songAdapter);
     }
