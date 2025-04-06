@@ -313,6 +313,7 @@ public class PlayingFragment extends Fragment {
             public void onClick(View v) {
                 if (isBound && mediaPlaybackService.getCurrentSong()!=null) {
                     isShuffle = !isShuffle;
+                    mediaPlaybackService.setShuffle(isShuffle);
                     if (isShuffle) {
                         ColorStateList colorStateList = ColorStateList.valueOf(Color.parseColor("#34C95C"));
                         shuffleButton.setBackgroundTintList(colorStateList);
