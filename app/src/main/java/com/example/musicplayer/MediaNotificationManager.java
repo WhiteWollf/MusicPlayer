@@ -43,7 +43,7 @@ public class MediaNotificationManager {
                 .setSmallIcon(R.drawable.mp_notification_logo)
                 .setContentTitle(title)
                 .setContentText(artist)
-                //.setLargeIcon(albumArt) //Saját telefonon jobb, ha van, emulált telefonon viszont nagyon tetszik ahogy alapetően kinéz és aniáció is van a háttérben, ha nincs beállítva
+                .setLargeIcon(albumArt) //Saját telefonon jobb, ha van, emulált telefonon viszont nagyon tetszik ahogy alapetően kinéz és aniáció is van a háttérben, ha nincs beállítva
                 .setDeleteIntent(getActionIntent("ACTION_STOP"))
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setOnlyAlertOnce(true)
