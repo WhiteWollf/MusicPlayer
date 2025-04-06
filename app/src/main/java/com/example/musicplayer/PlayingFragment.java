@@ -45,7 +45,6 @@ public class PlayingFragment extends Fragment {
 
     private SeekBar seekBar;
     private Handler handler = new Handler();
-
     private Runnable seekBarUpdater;
 
     private BroadcastReceiver playPauseReceiver = new BroadcastReceiver() {
@@ -232,17 +231,9 @@ public class PlayingFragment extends Fragment {
                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
 
-                // 5. Finish current activity
                 requireActivity().finish();
             }
         });
-
-        if (email != null && userName != null) {
-            Log.d("SharedPrefs", "Email: " + email);
-            Log.d("SharedPrefs", "Username: " + userName);
-        } else {
-            Log.d("SharedPrefs", "No user data found");
-        }
 
         ColorStateList inactiveStateList = ColorStateList.valueOf(Color.GRAY);
         repeatButton.setBackgroundTintList(inactiveStateList);

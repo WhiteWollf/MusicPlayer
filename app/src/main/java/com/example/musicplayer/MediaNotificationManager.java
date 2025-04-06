@@ -39,11 +39,11 @@ public class MediaNotificationManager {
     }
 
     public Notification showNotification(String title, String artist, Bitmap albumArt, boolean isPlaying, int totalDuration, int currentDuration) {
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
+            NotificationCompat.Builder builder = new NotificationCompat.Builder(context, CHANNEL_ID)
                 .setSmallIcon(R.drawable.mp_notification_logo)
                 .setContentTitle(title)
                 .setContentText(artist)
-                .setLargeIcon(albumArt)
+                //.setLargeIcon(albumArt) //Saját telefonon jobb, ha van, emulált telefonon viszont nagyon tetszik ahogy alapetően kinéz és aniáció is van a háttérben, ha nincs beállítva
                 .setDeleteIntent(getActionIntent("ACTION_STOP"))
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setOnlyAlertOnce(true)

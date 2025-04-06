@@ -39,7 +39,6 @@ public class MusicPlayer extends AppCompatActivity {
                         }else {
                         }
                     });
-
             requestPermissionLauncher.launch(new String[] {
                     android.Manifest.permission.READ_EXTERNAL_STORAGE,
                     android.Manifest.permission.READ_MEDIA_AUDIO,
@@ -53,9 +52,7 @@ public class MusicPlayer extends AppCompatActivity {
                         if (!isGranted.getOrDefault(android.Manifest.permission.READ_EXTERNAL_STORAGE, false)) {
                             Toast.makeText(MusicPlayer.this, R.string.permissionError, Toast.LENGTH_LONG).show();
                         }
-
                     });
-
             requestPermissionLauncher.launch(new String[] {
                     Manifest.permission.READ_EXTERNAL_STORAGE
             });

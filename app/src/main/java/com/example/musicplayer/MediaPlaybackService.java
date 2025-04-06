@@ -153,7 +153,7 @@ public class MediaPlaybackService extends MediaBrowserServiceCompat {
                 mediaPlayer.start();
                 mediaSession.setPlaybackState(new PlaybackStateCompat.Builder()
                         .setState(PlaybackStateCompat.STATE_PLAYING, mediaPlayer.getCurrentPosition(), 1)
-                        .setActions(PlaybackStateCompat.ACTION_PLAY_PAUSE | PlaybackStateCompat.ACTION_PAUSE | PlaybackStateCompat.ACTION_SKIP_TO_NEXT | PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS | PlaybackStateCompat.ACTION_STOP | PlaybackStateCompat.ACTION_SEEK_TO)
+                        .setActions(PlaybackStateCompat.ACTION_PLAY_PAUSE | PlaybackStateCompat.ACTION_PLAY | PlaybackStateCompat.ACTION_SKIP_TO_NEXT | PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS | PlaybackStateCompat.ACTION_STOP | PlaybackStateCompat.ACTION_SEEK_TO)
                         .build());
                 mediaNotificationManager.updateNotification(currentTitle, currentArtist, currentAlbumArt, true, mediaPlayer.getDuration(), mediaPlayer.getCurrentPosition());
                 updateNotificationSeekBar();
@@ -240,7 +240,7 @@ public class MediaPlaybackService extends MediaBrowserServiceCompat {
                     mediaPlayer.seekTo((int)pos);
                     mediaSession.setPlaybackState(new PlaybackStateCompat.Builder()
                             .setState(PlaybackStateCompat.STATE_PLAYING, mediaPlayer.getCurrentPosition(), 1)
-                            .setActions(PlaybackStateCompat.ACTION_PLAY_PAUSE | PlaybackStateCompat.ACTION_PAUSE | PlaybackStateCompat.ACTION_SKIP_TO_NEXT | PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS | PlaybackStateCompat.ACTION_STOP | PlaybackStateCompat.ACTION_SEEK_TO)
+                            .setActions(PlaybackStateCompat.ACTION_PLAY_PAUSE | PlaybackStateCompat.ACTION_PLAY | PlaybackStateCompat.ACTION_SKIP_TO_NEXT | PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS | PlaybackStateCompat.ACTION_STOP | PlaybackStateCompat.ACTION_SEEK_TO)
                             .build());
                     mediaNotificationManager.updateNotification(currentTitle, currentArtist, currentAlbumArt, isPlaying(), mediaPlayer.getDuration(), mediaPlayer.getCurrentPosition());
                 }
@@ -296,7 +296,7 @@ public class MediaPlaybackService extends MediaBrowserServiceCompat {
                     mp.start();
                     mediaSession.setPlaybackState(new PlaybackStateCompat.Builder()
                             .setState(PlaybackStateCompat.STATE_PLAYING, mediaPlayer.getCurrentPosition(), 1)
-                            .setActions(PlaybackStateCompat.ACTION_PLAY_PAUSE | PlaybackStateCompat.ACTION_PAUSE | PlaybackStateCompat.ACTION_SKIP_TO_NEXT | PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS | PlaybackStateCompat.ACTION_STOP | PlaybackStateCompat.ACTION_SEEK_TO)
+                            .setActions(PlaybackStateCompat.ACTION_PLAY_PAUSE | PlaybackStateCompat.ACTION_PLAY | PlaybackStateCompat.ACTION_SKIP_TO_NEXT | PlaybackStateCompat.ACTION_SKIP_TO_PREVIOUS | PlaybackStateCompat.ACTION_STOP | PlaybackStateCompat.ACTION_SEEK_TO)
                             .build());
                     Notification notification = mediaNotificationManager.showNotification(currentTitle, currentArtist, currentAlbumArt, mp.isPlaying(), mediaPlayer.getDuration(),mediaPlayer.getCurrentPosition());
                     startForeground(NOTIFICATION_ID, notification);

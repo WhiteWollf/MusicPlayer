@@ -10,9 +10,6 @@
         android:name="com.example.musicplayer.SongLibrary.SongFragment"
         android:label="Library"
         tools:layout="@layout/fragment_song_list">
-        <action
-            android:id="@+id/action_songFragment_to_playingFragment"
-            app:destination="@id/navigation_playing" />
     </fragment>
 
     <fragment
@@ -20,9 +17,6 @@
         android:name="com.example.musicplayer.PlayingFragment"
         android:label="Playing"
         tools:layout="@layout/fragment_playing" >
-        <action
-            android:id="@+id/action_navigation_playing_to_navigation_library"
-            app:destination="@id/navigation_library" />
     </fragment>
 
 </navigation>
