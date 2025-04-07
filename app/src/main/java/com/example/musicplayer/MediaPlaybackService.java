@@ -454,4 +454,22 @@ public class MediaPlaybackService extends MediaBrowserServiceCompat {
         }
     }
 
+    @Override
+    public void onTaskRemoved(Intent rootIntent) {
+        super.onTaskRemoved(rootIntent);
+
+        if (mediaPlayer != null) {
+            if (mediaPlayer.isPlaying()) {
+                mediaPlayer.stop();
+            }
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+
+        stopForeground(true);
+
+        stopSelf();
+    }
+
+
 }

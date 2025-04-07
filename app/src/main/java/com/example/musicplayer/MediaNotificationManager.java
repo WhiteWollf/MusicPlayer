@@ -63,7 +63,7 @@ public class MediaNotificationManager {
                 .setOnlyAlertOnce(true)
                 .setCategory(NotificationCompat.CATEGORY_TRANSPORT)
                 .setPriority(NotificationCompat.PRIORITY_LOW)
-                .setContentIntent(getContentIntent())
+                //.setContentIntent(getContentIntent())
                 .addAction(new NotificationCompat.Action(R.drawable.media_previous_small, "Previous", getActionIntent("ACTION_SKIP_TO_PREVIOUS")));
 
         if (isPlaying) {
